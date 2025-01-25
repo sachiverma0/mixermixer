@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from model import RecipeModel
 
 import google.generativeai as genai
+import re
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000"])
@@ -27,7 +28,30 @@ def home():
 
 
 def process_output(output):
-    recipe_dict = {"name": "test", "ingredients": [], "instructions": []}
+    recipe_dict = {"ingredients": [], "instructions": []}
+    for line in output.split("\n"):
+        if line.strip():
+            name_pattern = "^Name: (.+)$"
+            name_match = re.match(name_pattern, line)
+            if name_match:
+                recipe_dict["name"] = name_match.group(1)
+                continue
+            ingredient_pattern = "^\* (.*) ([a-z]+) (.*)$"
+            ingredient_match = re.match(ingredient_pattern, line)
+            if ingredient_match:
+                recipe_dict["ingredients"].append(
+                    {
+                        "name": ingredient_match.group(3),
+                        "amount": ingredient_match.group(1),
+                        "unit": ingredient_match.group(2),
+                    }
+                )
+                continue
+            instruction_pattern = "^\d+. .*$"
+            instruction_match = re.match(instruction_pattern, line)
+            if instruction_match:
+                recipe_dict["instructions"].append(line)
+
     return recipe_dict
 
 
@@ -39,7 +63,7 @@ def generate_recipe():
     )  # Replace 'default theme' with a fallback value if necessary
 
     # Prompt to be Gemini
-    prompt = f"Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name, ingredients, and numbered instructions in that order with no extra text. Adjust the amounts for something that is suitable to serve one person. Make it fit this theme: {theme}"
+    prompt = f"Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name, ingredients (bulleted), and instructions (numbered) in that order with no extra text. Adjust the amounts for something that is suitable to serve one person. Make it fun and very random."
 
     response = model.generate_content(prompt)
     print(response.text)
