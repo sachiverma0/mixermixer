@@ -24,9 +24,9 @@ def home():
 
 @app.post("/recipes")
 def save_recipe():
-    recipe = RecipeModel(request.json)
-    insert_result = recipes.insert_one(**recipe)
-    recipe["_id"] = str(insert_result.inserted_id)
+    recipe = RecipeModel(**request.json)
+    print(request.json)
+    recipes.insert_one(recipe.to_json())
     return recipe.to_json()
 
 
