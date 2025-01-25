@@ -33,6 +33,7 @@ def process_output(output):
         if line.strip():
             name_pattern = r"^Name: (.+)$"
             name_match = re.match(name_pattern, line)
+            print(line)
             if name_match:
                 recipe_dict["name"] = name_match.group(1).strip()
                 continue
@@ -63,7 +64,7 @@ def generate_recipe():
     )  # Replace 'default theme' with a fallback value if necessary
 
     # gemini prompt
-    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random, and make the name something unique.'
+    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: [emoji] ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Include an emoji at the beginning of the name (put it after the Name: part). Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random, and make the name something unique.'
 
     response = model.generate_content(prompt)
 

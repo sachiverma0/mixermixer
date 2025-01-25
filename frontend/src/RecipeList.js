@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Grid } from '@mui/material';
 import RecipeCard from './RecipeCard';
+import Header from './Header';
 
 function RecipeList() {
     const [data, setData] = useState(null);
@@ -18,6 +19,7 @@ function RecipeList() {
 
     return (
         <div>
+            <Header />
             <h1>Recipes</h1>
             <Grid container spacing={2}>
                 {/* Map through the data array and create a Card for each object */}

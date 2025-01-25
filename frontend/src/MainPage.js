@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import Header from "./Header";
 
 import {
     Button,
@@ -69,6 +70,7 @@ function MainPage({ theme_og }) {
 
     return (
         <ThemeProvider theme={customTheme}>
+            <Header />
             <Container
                 maxWidth="sm"
                 sx={{
@@ -85,7 +87,7 @@ function MainPage({ theme_og }) {
                             gutterBottom
                             sx={{ fontFamily: `'Lobster', cursive` }}
                         >
-                            Coca-Cola Drink Mix Generator
+                            Mixer Mixer
                         </Typography>
                         <Typography variant="body1">
                             Enter your party theme below to get a custom drink suggestion!

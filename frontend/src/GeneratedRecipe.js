@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { Alert, Button, Box } from '@mui/material';
 import { useNavigate, useLocation } from "react-router-dom";
 import RecipeCard from "./RecipeCard"
+import Header from "./Header";
 
 const GeneratedRecipe = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+
+  const [alert, setAlert] = useState({ message: "", severity: "success" });
+
 
 
   const recipe = location.state?.recipe;
@@ -25,13 +31,18 @@ const GeneratedRecipe = () => {
 
       const data = await response.json();
       if (response.ok) {
-        alert('Recipe saved :D')
-        navigate("/recipes");
+        setAlert({ message: "Recipe saved :D", severity: "success" });
+        setTimeout(() => {
+          navigate("/recipes");
+        }, 500);
       } else {
         throw new Error(data.message || "Failed to save recipe");
       }
     } catch (error) {
-      alert(`Error saving recipe: ${error.message}`);
+      setAlert({
+        message: `Failed to save recipe: ${error.message || "Unknown error"}`,
+        severity: "error",
+      });
     }
   };
 
@@ -41,26 +52,46 @@ const GeneratedRecipe = () => {
   };
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
-      <h1 style={{ color: "#333" }}>{recipe.name}</h1>
-      <RecipeCard recipe={recipe} />
+    <div>
+      <Header />
+      <div style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
 
-      {/* Save Recipe Button */}
-      <button
-        style={{ padding: "10px 15px", margin: "10px", cursor: "pointer" }}
-        onClick={handleSave}
-      >
-        Save Recipe
-      </button>
+        <RecipeCard recipe={recipe} />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center', // Horizontally center the items
+            width: '100%',
+          }}
+        >
+          {/* Generate Another Recipe Button */}
+          <Button variant="outlined"
+            style={{ padding: "10px 15px", margin: "10px", cursor: "pointer" }}
+            onClick={handleGenerateAnother}
+          >
+            Try Again
+          </Button>
 
-      {/* Generate Another Recipe Button */}
-      <button
-        style={{ padding: "10px 15px", margin: "10px", cursor: "pointer" }}
-        onClick={handleGenerateAnother}
-      >
-        Generate Another Recipe
-      </button>
+          {/* Save Recipe Button */}
+          <Button variant="contained"
+            style={{ padding: "10px 15px", margin: "10px", cursor: "pointer" }}
+            onClick={handleSave}
+          >
+            Save Recipe
+          </Button>
+        </Box>
+
+        {/* Conditionally render the Alert */}
+        {alert.message && (
+          <Alert severity={alert.severity} style={{ marginTop: "20px" }}>
+            {alert.message}
+          </Alert>
+        )}
+
+
+      </div>
     </div>
+
   );
 };
 
