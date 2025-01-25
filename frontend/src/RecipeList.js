@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Grid } from '@mui/material';
+import RecipeCard from './RecipeCard';
 
 function RecipeList() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        axios.get('/recipes')
+        axios.get('http://127.0.0.1:5000/recipes')
             .then(response => {
                 setData(response.data); // Store the response data in state
             })
@@ -16,8 +18,17 @@ function RecipeList() {
 
     return (
         <div>
-            <h1>Data from Flask API:</h1>
-            {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+            <h1>Recipes</h1>
+            <Grid container spacing={2}>
+                {/* Map through the data array and create a Card for each object */}
+                {data ? data.map((item, index) => (
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                        <RecipeCard recipe={item} />
+                    </Grid>
+                )) : (
+                    <p>Loading...</p>
+                )}
+            </Grid>
         </div>
     );
 }
