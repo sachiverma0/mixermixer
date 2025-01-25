@@ -2,14 +2,13 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import RecipeCard from "./RecipeCard"
 
-const GeneratedRecipe = ({ recipe_og, theme_og }) => {
+const GeneratedRecipe = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
 
   const recipe = location.state?.recipe;
   const theme = location.state?.theme;
-  console.log("recipe_content ", recipe);
 
   if (!recipe) return <p>No recipe to display.</p>;
 
@@ -26,7 +25,8 @@ const GeneratedRecipe = ({ recipe_og, theme_og }) => {
 
       const data = await response.json();
       if (response.ok) {
-        alert(data.message || "Recipe saved successfully!");
+        alert('Recipe saved :D')
+        navigate("/recipes");
       } else {
         throw new Error(data.message || "Failed to save recipe");
       }

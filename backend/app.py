@@ -34,14 +34,14 @@ def process_output(output):
             name_pattern = r"^Name: (.+)$"
             name_match = re.match(name_pattern, line)
             if name_match:
-                recipe_dict["name"] = name_match.group(1)
+                recipe_dict["name"] = name_match.group(1).strip()
                 continue
             ingredient_pattern = r"^\* (.*) ([a-z]+) (.*)$"
             ingredient_match = re.match(ingredient_pattern, line)
             if ingredient_match:
                 recipe_dict["ingredients"].append(
                     {
-                        "name": ingredient_match.group(3),
+                        "name": ingredient_match.group(3).strip(),
                         "amount": ingredient_match.group(1),
                         "unit": ingredient_match.group(2),
                     }
@@ -58,15 +58,14 @@ def process_output(output):
 @app.route("/generate_recipe", methods=["POST", "GET"])
 def generate_recipe():
     # Retrieve the user input from the previous page
-    theme = request.args.get(
+    theme = request.get_json().get(
         "theme", "anything"
     )  # Replace 'default theme' with a fallback value if necessary
 
-    # Prompt to be Gemini
-    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random.'
+    # gemini prompt
+    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random, and make the name something unique.'
 
     response = model.generate_content(prompt)
-    print(response.text)
 
     return RecipeModel(**process_output(response.text)).to_json()
 

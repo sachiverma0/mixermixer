@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import {
     Button,
@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function MainPage() {
-    const [theme, setTheme] = useState(""); // Use theme from navigation state if available
+function MainPage({ theme_og }) {
+    const location = useLocation();
+    const [theme, setTheme] = useState(location.state?.theme, ""); // Use theme from navigation state if available
     const navigate = useNavigate(); // React Router's navigation hook
 
     const generateRecipe = async (theme) => {
