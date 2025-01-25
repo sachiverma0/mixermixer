@@ -9,46 +9,53 @@ app = Flask(__name__)
 # Load environment variables from .env file
 load_dotenv()
 
-# Get the OpenAI API key from environment variables
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
 # MongoDB Configuration
 mongo_client = MongoClient("mongodb://localhost:27017/")
 db = mongo_client["drink_recipes_db"]
 recipes_collection = db["recipes"]
 
-@app.route('/generate', methods=['POST'])
-def generate_drink():
-    # Get the theme entered by the user
-    theme = request.form.get('theme')
+import requests
+from flask import Flask, request, jsonify
 
-    # Construct the prompt
-    prompt = f"Generate a drink recipe that only uses Coca-Cola owned drinks that follows this theme: {theme}"
+app = Flask(__name__)
+
+# Gemini API Base URL (Update this with the actual Gemini API endpoint)
+GEMINI_API_URL = "https://api.gemini.com/v1/endpoint"  # Replace with actual endpoint
+GEMINI_API_KEY = "your_gemini_api_key_here"  # Replace with your Gemini API key
+
+@app.route('/generate', methods=['POST'])
+def generate():
+    data = request.get_json()
+    theme = data.get('theme', '')
+
+    # Request payload for Gemini API
+    payload = {
+        "prompt": f"Generate a drink recipe that only uses Coca-Cola owned drinks with the theme: {theme}.",
+        "other_parameters": "value"  # Add any other required parameters based on Gemini's API
+    }
+
+    # Headers for Gemini API
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {GEMINI_API_KEY}"  # Or whatever auth method Gemini requires
+    }
 
     try:
-        # Call the OpenAI API
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # Choose the desired OpenAI model
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
-                {"role": "user", "content": prompt}
-            ]
-        )
+        # Send the request to Gemini API
+        response = requests.post(GEMINI_API_URL, json=payload, headers=headers)
+        response.raise_for_status()  # Raise an error if the request failed
 
-        # Extract the JSON content from the response
-        recipe_json = response.choices[0].message['content']
-        recipe = eval(recipe_json)  # Parse the JSON response (use `json.loads` if preferred)
+        # Parse the response from Gemini
+        gemini_response = response.json()
 
-    except Exception as e:
-        # Handle errors gracefully
-        recipe = {
-            "name": "Error Generating Recipe",
-            "ingredients": [],
-            "instructions": [f"Error: {str(e)}"]
-        }
+        # Return the Gemini API response to the frontend
+        return jsonify(gemini_response)
 
-    # Render the recipe in the `generated_recipe.html` page
-    return render_template('generated_recipe.html', recipe=recipe, theme=theme)
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 @app.route('/save_recipe', methods=['POST'])

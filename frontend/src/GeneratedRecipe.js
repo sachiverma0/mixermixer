@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const GeneratedRecipe = ({ recipe, theme, onSaveRecipe, onGenerateAnother }) => {
+const GeneratedRecipe = ({ recipe, theme }) => {
+  const navigate = useNavigate();
+
   if (!recipe) return <p>No recipe to display.</p>;
 
   const handleSave = async (event) => {
@@ -23,6 +26,11 @@ const GeneratedRecipe = ({ recipe, theme, onSaveRecipe, onGenerateAnother }) => 
     } catch (error) {
       alert(`Error saving recipe: ${error.message}`);
     }
+  };
+
+  const handleGenerateAnother = () => {
+    // Navigate back to the main page and pass the theme to start again
+    navigate("/", { state: { theme } });
   };
 
   return (
@@ -56,7 +64,7 @@ const GeneratedRecipe = ({ recipe, theme, onSaveRecipe, onGenerateAnother }) => 
       {/* Generate Another Recipe Button */}
       <button
         style={{ padding: "10px 15px", margin: "10px", cursor: "pointer" }}
-        onClick={() => onGenerateAnother(theme)}
+        onClick={handleGenerateAnother}
       >
         Generate Another Recipe
       </button>
