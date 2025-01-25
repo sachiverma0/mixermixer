@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import RecipeList from "./RecipeList";
-import GeneratedRecipe from "./components/GeneratedRecipe";
+import GeneratedRecipe from "./GeneratedRecipe";
 
 function App() {
   const [recipe, setRecipe] = useState(null); // Holds the generated recipe
