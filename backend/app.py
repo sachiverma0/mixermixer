@@ -59,11 +59,11 @@ def process_output(output):
 def generate_recipe():
     # Retrieve the user input from the previous page
     theme = request.args.get(
-        "theme", "default theme"
+        "theme", "anything"
     )  # Replace 'default theme' with a fallback value if necessary
 
     # Prompt to be Gemini
-    prompt = f"Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name, ingredients (bulleted), and instructions (numbered) in that order with no extra text. Adjust the amounts for something that is suitable to serve one person. Make it fun and very random."
+    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random.'
 
     response = model.generate_content(prompt)
     print(response.text)
