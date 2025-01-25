@@ -24,23 +24,13 @@ def home():
 
 @app.post("/recipes")
 def save_recipe():
-    output = request.args.get("output")
-    recipe = RecipeModel(
-        **{
-            "name": "yummy drink",
-            "ingredients": [
-                {"name": "sprite", "amount": 2, "unit": "oz"},
-                {"name": "gold peak iced tea or smth idk", "amount": 1, "unit": "oz"},
-            ],
-            "instructions": [],
-        }
-    )  # RecipeModel(**{"name": prompt})
-    insert_result = recipes.insert_one(recipe)
+    recipe = RecipeModel(request.json)
+    insert_result = recipes.insert_one(**recipe)
     recipe["_id"] = str(insert_result.inserted_id)
     return recipe.to_json()
 
 
-@app.route("/recipes")
+@app.get("/recipes")
 def get_recipes():
     return [RecipeModel(**doc).to_json() for doc in recipes.find()]
 
