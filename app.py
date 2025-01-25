@@ -1,11 +1,38 @@
-from flask import Flask, render_template
+import os
+
+from flask import Flask, request, render_template
+from dotenv import load_dotenv
+from pymongo import MongoClient
+
+from model import RecipeModel
+
 
 app = Flask(__name__)
+
+load_dotenv(override=True)
+MONGO_URI = os.getenv("MONGO_URI")
+client = MongoClient(MONGO_URI)
+
+db = client["coke"]
+recipes = db["recipes"]
 
 
 @app.route("/")
 def home():
     return render_template("recipe.html")
+
+
+@app.post("/recipes")
+def save_recipe():
+    recipe = RecipeModel(**request.json)
+    print(request.json)
+    recipes.insert_one(recipe.to_json())
+    return recipe.to_json()
+
+
+@app.get("/recipes")
+def get_recipes():
+    return [RecipeModel(**doc).to_json() for doc in recipes.find()]
 
 
 if __name__ == "__main__":
