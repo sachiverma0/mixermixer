@@ -6,9 +6,15 @@ function RecipeCard({ recipe }) {
         <Card>
             <CardContent>
                 <Typography variant="h5">{recipe.name}</Typography>
-                <Typography variant="body2" color="textSecondary">
-                    {recipe.description || 'No description available'}
-                </Typography>
+                Ingredients:
+                {recipe.ingredients.map((ingredient, index) => (
+                    <Typography variant="body2">- {ingredient.amount} {ingredient.unit} {ingredient.name}</Typography>
+                ))}
+
+                Instructions:
+                {recipe.instructions.map((instruction, index) => (
+                    <Typography variant="body2">{instruction}</Typography>
+                ))}
             </CardContent>
         </Card>
     );
