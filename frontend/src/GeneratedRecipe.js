@@ -1,15 +1,22 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import RecipeCard from "./RecipeCard"
 
-const GeneratedRecipe = ({ recipe, theme }) => {
+const GeneratedRecipe = ({ recipe_og, theme_og }) => {
+  const location = useLocation();
   const navigate = useNavigate();
+
+
+  const recipe = location.state?.recipe;
+  const theme = location.state?.theme;
+  console.log("recipe_content ", recipe);
 
   if (!recipe) return <p>No recipe to display.</p>;
 
   const handleSave = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/save_recipe", {
+      const response = await fetch("http://127.0.0.1:5000/recipes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,22 +43,7 @@ const GeneratedRecipe = ({ recipe, theme }) => {
   return (
     <div style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
       <h1 style={{ color: "#333" }}>{recipe.name}</h1>
-
-      <h3>Ingredients</h3>
-      <ul style={{ padding: "0", listStyleType: "none" }}>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>
-            {ingredient.name} - {ingredient.amount} {ingredient.unit}
-          </li>
-        ))}
-      </ul>
-
-      <h3>Instructions</h3>
-      <ol>
-        {recipe.instructions.map((step, index) => (
-          <li key={index}>{step}</li>
-        ))}
-      </ol>
+      <RecipeCard recipe={recipe} />
 
       {/* Save Recipe Button */}
       <button

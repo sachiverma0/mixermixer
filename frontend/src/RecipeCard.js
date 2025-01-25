@@ -8,12 +8,12 @@ function RecipeCard({ recipe }) {
                 <Typography variant="h5">{recipe.name}</Typography>
                 Ingredients:
                 {recipe.ingredients.map((ingredient, index) => (
-                    <Typography variant="body2">- {ingredient.amount} {ingredient.unit} {ingredient.name}</Typography>
+                    <Typography variant="body2" key={index}>- {ingredient.amount} {ingredient.unit} {ingredient.name}</Typography>
                 ))}
 
                 Instructions:
                 {recipe.instructions.map((instruction, index) => (
-                    <Typography variant="body2">{instruction}</Typography>
+                    <Typography variant="body2" key={index}>{instruction}</Typography>
                 ))}
             </CardContent>
         </Card>
