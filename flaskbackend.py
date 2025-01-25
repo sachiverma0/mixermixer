@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from dotenv import load_dotenv
+import os
 import openai
 from pymongo import MongoClient
 
 app = Flask(__name__)
 
-# Configure OpenAI API Key
-openai.api_key = "your_openai_api_key"
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the OpenAI API key from environment variables
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # MongoDB Configuration
 mongo_client = MongoClient("mongodb://localhost:27017/")
