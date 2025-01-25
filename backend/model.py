@@ -7,7 +7,7 @@ PyObjectId = Annotated[str, BeforeValidator(str)]
 
 class IngredientsModel(BaseModel):
     name: Optional[str] = ""
-    amount: Optional[int]
+    amount: Optional[str]
     unit: Optional[str]
 
 
