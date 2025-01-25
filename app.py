@@ -1,11 +1,10 @@
 import os
 
-import bson.json_util
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template
 from dotenv import load_dotenv
 from pymongo import MongoClient
 
-import bson
+from model import RecipeModel
 
 
 app = Flask(__name__)
@@ -25,22 +24,25 @@ def home():
 
 @app.post("/recipes")
 def save_recipe():
-    prompt = request.args.get("prompt")
-    cocktail = {"prompt": prompt}
-    print(cocktail)
-    insert_result = recipes.insert_one(cocktail)
-    cocktail["_id"] = str(insert_result.inserted_id)
-    return cocktail
+    output = request.args.get("output")
+    recipe = RecipeModel(
+        **{
+            "name": "yummy drink",
+            "ingredients": [
+                {"name": "sprite", "amount": 2, "unit": "oz"},
+                {"name": "gold peak iced tea or smth idk", "amount": 1, "unit": "oz"},
+            ],
+            "instructions": [],
+        }
+    )  # RecipeModel(**{"name": prompt})
+    insert_result = recipes.insert_one(recipe)
+    recipe["_id"] = str(insert_result.inserted_id)
+    return recipe.to_json()
 
 
 @app.route("/recipes")
 def get_recipes():
-    recipe_docs = recipes.find()
-    recipe_list = []
-    for recipe in recipe_docs:
-        recipe["_id"] = str(recipe["_id"])
-        recipe_list.append(recipe)
-    return recipe_list
+    return [RecipeModel(**doc).to_json() for doc in recipes.find()]
 
 
 if __name__ == "__main__":
