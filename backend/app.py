@@ -31,12 +31,12 @@ def process_output(output):
     recipe_dict = {"ingredients": [], "instructions": []}
     for line in output.split("\n"):
         if line.strip():
-            name_pattern = "^Name: (.+)$"
+            name_pattern = r"^Name: (.+)$"
             name_match = re.match(name_pattern, line)
             if name_match:
                 recipe_dict["name"] = name_match.group(1)
                 continue
-            ingredient_pattern = "^\* (.*) ([a-z]+) (.*)$"
+            ingredient_pattern = r"^\* (.*) ([a-z]+) (.*)$"
             ingredient_match = re.match(ingredient_pattern, line)
             if ingredient_match:
                 recipe_dict["ingredients"].append(
@@ -47,7 +47,7 @@ def process_output(output):
                     }
                 )
                 continue
-            instruction_pattern = "^\d+. .*$"
+            instruction_pattern = r"^\d+. .*$"
             instruction_match = re.match(instruction_pattern, line)
             if instruction_match:
                 recipe_dict["instructions"].append(line)
