@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Card, CardContent, Typography } from '@mui/material';
+import FavoriteToggle from './FavoriteToggle';
 
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, includeToggle }) {
     return (
         <Card>
             <CardContent>
@@ -22,6 +23,7 @@ function RecipeCard({ recipe }) {
                 {recipe.instructions.map((instruction, index) => (
                     <Typography variant="body2" key={index}>{instruction}</Typography>
                 ))}
+                {includeToggle && <FavoriteToggle itemId={recipe._id} initialFavorite={recipe.favorited} />}
             </CardContent>
         </Card>
     );

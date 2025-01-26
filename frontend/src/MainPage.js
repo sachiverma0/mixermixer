@@ -68,6 +68,11 @@ function MainPage({ theme_og }) {
         },
     });
 
+    const goToRecipes = () => {
+        // Navigate back to the main page and pass the theme to start again
+        navigate("/recipes");
+    };
+
     return (
         <ThemeProvider theme={customTheme}>
             <Header />
@@ -119,8 +124,13 @@ function MainPage({ theme_og }) {
                         <Button type="submit" variant="contained" color="primary" size="large">
                             Generate Drink
                         </Button>
+                        <Button variant="outlined" onClick={goToRecipes}>
+                            See Recipes
+                        </Button>
                     </Box>
                 </div>
+
+
             </Container>
         </ThemeProvider>
     );
