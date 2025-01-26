@@ -10,6 +10,8 @@ const GeneratedRecipe = () => {
 
 
   const [alert, setAlert] = useState({ message: "", severity: "success" });
+  const [hovered, setHovered] = useState(false);
+  const [hovered2, setHovered2] = useState(false);
 
 
 
@@ -65,20 +67,41 @@ const GeneratedRecipe = () => {
           }}
         >
           {/* Generate Another Recipe Button */}
-          <Button variant="outlined"
-            style={{ padding: "10px 15px", margin: "10px", cursor: "pointer" }}
+            <Button
+            variant="outlined"
+            style={{
+                padding: "10px 15px",
+                margin: "10px",
+                cursor: "pointer",
+                backgroundColor: "transparent", // Transparent background
+                color: hovered ? "#b71c29" : "#e7223a", // Darker red on hover
+                border: `2px solid ${hovered ? "#b71c29" : "#e7223a"}`, // Darker border on hover
+                borderRadius: "5px", // Rounded corners
+            }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
             onClick={handleGenerateAnother}
-          >
+            >
             Try Again
-          </Button>
+            </Button>
 
-          {/* Save Recipe Button */}
-          <Button variant="contained"
-            style={{ padding: "10px 15px", margin: "10px", cursor: "pointer" }}
+            {/* Save Recipe Button */}
+            <button
+            style={{
+                padding: "10px 15px",
+                margin: "10px",
+                cursor: "pointer",
+                backgroundColor: hovered2 ? "#b71c29" : "#e7223a", // Darken red on hover
+                color: "#ffffff", // White text
+                border: "none",
+                borderRadius: "5px", // Rounded corners
+            }}
+            onMouseEnter={() => setHovered2(true)}
+            onMouseLeave={() => setHovered2(false)}
             onClick={handleSave}
-          >
-            Save Recipe
-          </Button>
+            >
+            SAVE RECIPE
+            </button>
         </Box>
 
         {/* Conditionally render the Alert */}
