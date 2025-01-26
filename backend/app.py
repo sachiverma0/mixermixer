@@ -15,8 +15,13 @@ CORS(app, origins=["http://127.0.0.1:3000", "http://localhost:3000"])
 
 load_dotenv("../.env", override=True)
 
+<<<<<<< Updated upstream
 MONGODB_URI = os.getenv("MONGODB_URI")
 client = MongoClient(MONGODB_URI, tlsAllowInvalidCertificates=True)
+=======
+MONGO_URI = os.getenv("MONGODB_URI")
+client = MongoClient(MONGO_URI)
+>>>>>>> Stashed changes
 db = client["coke"]
 recipes = db["recipes"]
 
@@ -107,7 +112,7 @@ def generate_recipe():
     """
 
     # gemini prompt
-    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: [emoji] ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Include an emoji at the beginning of the name (put it after the Name: part). Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random, and make the name something unique. For your reference, here are some of the Coca-Cola products to choose from: {cocacola_products}'
+    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: [emoji] ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Include an emoji at the beginning of the name (put it after the Name: part). Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Also, if the theme has a color palette, make sure the drink follows that color palette. Make it fun and very random, and make the name something unique. For your reference, here are some of the Coca-Cola products to choose from: {cocacola_products}'
 
     response = model.generate_content(prompt)
 

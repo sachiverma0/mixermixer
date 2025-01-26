@@ -44,6 +44,7 @@ function MainPage({ theme_og }) {
                 fontFamily: "Lato",
             },
             secondary: {
+<<<<<<< Updated upstream
                 main: "#ffffff", // White
                 fontFamily: "Lato",
             },
@@ -51,6 +52,28 @@ function MainPage({ theme_og }) {
                 primary: "#ba432e", // Black
                 secondary: "#ba432e", // Light red
                 fontFamily: "Lato",
+=======
+                main: "#fff8fa", // Light pink
+            },
+            background: {
+                default: "#360103", // Dark red
+                paper: "#ffe3ea", // lite pink
+            },
+            text: {
+                primary: "#360103", // dark red
+                secondary: "#360103", // dark red
+            },
+        },
+        typography: {
+            fontFamily: `'Roboto', sans-serif`, // Default font
+            h3: {
+                fontWeight: 700, // Bold for headings
+                color: "#e7223a", // Coca-Cola red
+            },
+            body1: {
+                fontSize: "1rem",
+                color: "#ba432e", // weird orange lol???
+>>>>>>> Stashed changes
             },
         },
     });
