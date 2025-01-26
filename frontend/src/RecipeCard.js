@@ -1,10 +1,9 @@
 import React from 'react';
 import { Box, Card, CardContent, Typography } from '@mui/material';
-import FavoriteToggle from './FavoriteToggle';
 
-function RecipeCard({ recipe, includeToggle }) {
+function RecipeCard({ recipe }) {
     return (
-        <Card>
+        <Card sx={{ backgroundColor: '#fae6e7' }}>
             <CardContent>
                 <Box
                     sx={{
@@ -13,17 +12,27 @@ function RecipeCard({ recipe, includeToggle }) {
                         width: '100%',
                     }}
                 >
-                    <Typography variant="h5">{recipe.name}</Typography></Box>
-                Ingredients:
+                    <Typography variant="h5" sx={{ fontFamily: 'Cantarell', fontWeight: 'bold' }}>
+                        {recipe.name}
+                    </Typography>
+                </Box>
+                <Typography variant="h6" sx={{ fontFamily: 'Fira Sans', marginTop: 2 }}>
+                    Ingredients:
+                </Typography>                
                 {recipe.ingredients.map((ingredient, index) => (
-                    <Typography variant="body2" key={index}>- {ingredient.amount} {ingredient.unit} {ingredient.name}</Typography>
+                    <Typography variant="body2" key={index} sx={{ fontFamily: 'Fira Sans' }}>
+                        - {ingredient.amount} {ingredient.unit} {ingredient.name}
+                    </Typography>
                 ))}
 
-                Instructions:
+                <Typography variant="h6" sx={{ fontFamily: 'Fira Sans', marginTop: 2 }}>
+                    Instructions:
+                </Typography>
                 {recipe.instructions.map((instruction, index) => (
-                    <Typography variant="body2" key={index}>{instruction}</Typography>
+                    <Typography variant="body2" key={index} sx={{ fontFamily: 'Fira Sans' }}>
+                        {instruction}
+                    </Typography>
                 ))}
-                {includeToggle && <FavoriteToggle itemId={recipe._id} initialFavorite={recipe.favorited} />}
             </CardContent>
         </Card>
     );
