@@ -15,8 +15,8 @@ CORS(app, origins=["http://127.0.0.1:3000", "http://localhost:3000"])
 
 load_dotenv("../.env", override=True)
 
-MONGO_URI = os.getenv("MONGO_URI")
-client = MongoClient(MONGO_URI)
+MONGO_URI = os.getenv("MONGODB_URI")
+client = MongoClient(MONGO_URI, tlsAllowInvalidCertificates=True)
 db = client["coke"]
 recipes = db["recipes"]
 

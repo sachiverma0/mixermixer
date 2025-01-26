@@ -3,7 +3,7 @@ import { Box, Card, CardContent, Typography } from '@mui/material';
 
 function RecipeCard({ recipe }) {
     return (
-        <Card sx={{ backgroundColor: '#fae6e7' }}>
+        <Card sx={{ margin:"10px", backgroundColor: '#ffe3ea' }}>
             <CardContent>
                 <Box
                     sx={{
