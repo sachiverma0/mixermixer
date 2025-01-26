@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #FFBAB4; /* Light pink */
+  background-image: url("/Users/leeann/Documents/GitHub/coke/frontend/public/banner.png");
   
 }
 

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Header from "./Header";
-
 import {
     Button,
     Container,
@@ -11,6 +9,7 @@ import {
     Paper,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Header from "./Header";
 
 function MainPage({ theme_og }) {
     const location = useLocation();
@@ -41,29 +40,17 @@ function MainPage({ theme_og }) {
     const customTheme = createTheme({
         palette: {
             primary: {
-                main: "#e7223a", // Coca-Cola red
+                main: "#ba432e", // Coca-Cola red
+                fontFamily: "sans-serif",
             },
             secondary: {
-                main: "#fff8ff", // Light pink
-            },
-            background: {
-                default: "#360103", // Dark red
-                paper: "#ffe3ea", // Medium dark red
+                main: "#ffffff", // White
+                fontFamily: "sans-serif",
             },
             text: {
-                primary: "#360103", // Light red
-                secondary: "#360103", // Light pink
-            },
-        },
-        typography: {
-            fontFamily: `'Roboto', sans-serif`, // Default font
-            h3: {
-                fontWeight: 700, // Bold for headings
-                color: "#e7223a", // Coca-Cola red
-            },
-            body1: {
-                fontSize: "1rem",
-                color: "#ba432e", // Light red
+                primary: "#ba432e", // Black
+                secondary: "#ba432e", // Light red
+                fontFamily: "sans-serif",
             },
         },
     });
@@ -82,22 +69,33 @@ function MainPage({ theme_og }) {
                     py: 5,
                     borderRadius: 2,
                     boxShadow: 3,
+                    backgroundColor: "#ffffff", // Set the background color to white
                 }}
             >
                 <div>
-                    <Paper elevation={3} sx={{ p: 4, mb: 4, textAlign: "center" }}>
                         <Typography
                             variant="h3"
                             component="h1"
                             gutterBottom
-                            sx={{ fontFamily: `'Lobster', cursive` }}
+                            sx={{ fontFamily: 'sans-serif'}}
+                            align="center"
+                            fontccolor="#7D1128"
+                            fontSize={"32px"}
                         >
-                            Need a drink?
+                            need a mixer 🍸 for your mixer 👯?
+
                         </Typography>
-                        <Typography variant="body1">
-                            Enter your party theme below to get a custom drink idea!
+                        <Typography
+                            variant="h3"
+                            component="h1"
+                            gutterBottom
+                            sx={{ fontFamily: 'sans-serif'}}
+                            align="center"
+                            fontccolor="#7D1128"
+                            fontSize={"32px"}
+                        >
+                        tell us a theme to get started!
                         </Typography>
-                    </Paper>
                     <Box
                         component="form"
                         onSubmit={(e) => {
@@ -117,9 +115,8 @@ function MainPage({ theme_og }) {
                             onChange={(e) => setTheme(e.target.value)}
                             required
                             fullWidth
-                    
                             InputProps={{
-                                style: { fontFamily: "Roboto", color: "#7D1128", padding: "10px !important" },
+                                style: { fontFamily: "sans-serif", color: "#7D1128", padding: "10px !important" },
                             }}
                         />
                         <Button type="submit" variant="contained" color="primary" size="large">
@@ -130,8 +127,6 @@ function MainPage({ theme_og }) {
                         </Button>
                     </Box>
                 </div>
-
-
             </Container>
         </ThemeProvider>
     );
