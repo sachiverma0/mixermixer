@@ -63,8 +63,49 @@ def generate_recipe():
         "theme", "anything"
     )  # Replace 'default theme' with a fallback value if necessary
 
+    cocacola_products = """
+        Sparkling Drinks:
+        Coca-Cola
+        Diet Coke
+        Coca-Cola Zero Sugar
+        Sprite
+        Fanta
+        Barq's
+        Fresca
+        Mello Yello
+        Seagram's Ginger Ale
+
+        Waters and Hydration:
+        Dasani
+        Smartwater
+        Vitaminwater
+        Powerade
+
+        Juices, Dairy, and Plant-Based Beverages:
+        Minute Maid
+        Simply
+        Fairlife
+        Odwalla
+        Honest Kids
+
+
+        Tea and Coffee:
+        Gold Peak Tea
+        Honest Tea
+        Peace Tea
+        Fuze Tea
+
+        Energy Drinks:
+        Full Throttle
+        NOS
+
+        Alcohol Ready-to-Drink Beverages:
+        Topo Chico Hard Seltzer
+        Simply Spiked Lemonade
+    """
+
     # gemini prompt
-    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: [emoji] ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Include an emoji at the beginning of the name (put it after the Name: part). Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random, and make the name something unique.'
+    prompt = f'Generate a drink recipe that only uses brands owned by Coca-Cola with no extra non-Coca-Cola-owned ingredients. I want the name (in the format "Name: [emoji] ___"), ingredients (bulleted), and instructions (numbered) in that order with no extra text. Include an emoji at the beginning of the name (put it after the Name: part). Please give me quantities for the ingredients. It is ok if they are overestimates. Adjust the amounts for something that is suitable to serve one person. Try following this theme: {theme}. Make it fun and very random, and make the name something unique. For your reference, here are some of the Coca-Cola products to choose from: {cocacola_products}'
 
     response = model.generate_content(prompt)
 
