@@ -41,16 +41,16 @@ function MainPage({ theme_og }) {
         palette: {
             primary: {
                 main: "#ba432e", // Coca-Cola red
-                fontFamily: "sans-serif",
+                fontFamily: "Lato",
             },
             secondary: {
                 main: "#ffffff", // White
-                fontFamily: "sans-serif",
+                fontFamily: "Lato",
             },
             text: {
                 primary: "#ba432e", // Black
                 secondary: "#ba432e", // Light red
-                fontFamily: "sans-serif",
+                fontFamily: "Lato",
             },
         },
     });
@@ -73,29 +73,30 @@ function MainPage({ theme_og }) {
                 }}
             >
                 <div>
-                        <Typography
-                            variant="h3"
-                            component="h1"
-                            gutterBottom
-                            sx={{ fontFamily: 'sans-serif'}}
-                            align="center"
-                            fontccolor="#7D1128"
-                            fontSize={"32px"}
-                        >
-                            need a mixer 🍸 for your mixer 👯?
+                    <Typography
+                        variant="h3"
+                        component="h1"
+                        gutterBottom
+                        sx={{ fontFamily: 'Lato', color: "#595959 !important" }}
+                        align="center"
+                        fontSize={"32px"}
+                        fontcolor="#77200d !important"
+                    >
+                        need a mixer 🍸 for your mixer 👯?
 
-                        </Typography>
-                        <Typography
-                            variant="h3"
-                            component="h1"
-                            gutterBottom
-                            sx={{ fontFamily: 'sans-serif'}}
-                            align="center"
-                            fontccolor="#7D1128"
-                            fontSize={"32px"}
-                        >
+                    </Typography>
+                    <Typography
+                        variant="h3"
+                        component="h1"
+                        gutterBottom
+                        sx={{ fontFamily: 'Lato', color: "#595959 !important" }}
+                        align="center"
+                        fontcolor="#77200d !important"
+                        fontSize={"32px"}
+                        paddingBottom={"25px"}
+                    >
                         tell us a theme to get started!
-                        </Typography>
+                    </Typography>
                     <Box
                         component="form"
                         onSubmit={(e) => {
@@ -108,22 +109,31 @@ function MainPage({ theme_og }) {
                             gap: 2,
                         }}
                     >
-                        <TextField
-                            label="Party Theme"
-                            placeholder="Enter your party theme"
-                            value={theme}
-                            onChange={(e) => setTheme(e.target.value)}
-                            required
-                            fullWidth
-                            InputProps={{
-                                style: { fontFamily: "sans-serif", color: "#7D1128", padding: "10px !important" },
-                            }}
-                        />
-                        <Button type="submit" variant="contained" color="primary" size="large">
-                            Generate Drink
+                       <TextField
+    label="Enter Theme Here"
+    placeholder="Enter your party theme!"
+    value={theme}
+    onChange={(e) => setTheme(e.target.value)}
+    required
+    fullWidth
+    InputLabelProps={{
+        style: { fontSize: 24, fontFamily: "Lato" }, // Set font size and font family for the label
+    }}
+    InputProps={{
+        style: { fontSize: 24, fontFamily: "Lato", color: "#7D1128", padding: "10px !important"}, // Set font size and font family for the input and placeholder
+    }}
+    sx={{
+        '& .MuiInputBase-input::placeholder': {
+            fontSize: 24, // Set font size for the placeholder
+            fontFamily: "Lato",
+        },
+    }}
+/>
+                        <Button type="submit" variant="contained" color="primary" size="large" sx={{ textTransform: 'none', fontSize: 20, fontFamily:'Lato'}} >
+                            mix me a drink
                         </Button>
-                        <Button variant="outlined" onClick={goToRecipes}>
-                            See Recipes
+                        <Button variant="outlined" sx={{textTransform: 'none', fontSize: 20, fontFamily: 'Lato'}} onClick={goToRecipes}>
+                            see recipes
                         </Button>
                     </Box>
                 </div>
