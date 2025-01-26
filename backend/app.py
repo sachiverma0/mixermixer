@@ -1,9 +1,11 @@
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from model import RecipeModel
+
+from bson.objectid import ObjectId
 
 import google.generativeai as genai
 import re
@@ -28,7 +30,7 @@ def home():
 
 
 def process_output(output):
-    recipe_dict = {"ingredients": [], "instructions": []}
+    recipe_dict = {"ingredients": [], "instructions": [], "favorited": False}
     for line in output.split("\n"):
         if line.strip():
             name_pattern = r"^Name: (.+)$"
@@ -122,6 +124,25 @@ def save_recipe():
 @app.get("/recipes")
 def get_recipes():
     return [RecipeModel(**doc).to_json() for doc in recipes.find()]
+
+
+@app.patch("/update-favorite")
+def update_favorite():
+
+    data = request.get_json()
+    print(data)
+    item_id = data.get("itemId")
+    favorited = data.get("favorited")
+
+    result = recipes.update_one(
+        {"_id": ObjectId(item_id)},  # Find the item by ID
+        {"$set": {"favorited": favorited}},  # Update the is_favorite field
+    )
+
+    if result.matched_count == 0:
+        return jsonify({"message": "Item not found"}), 404
+
+    return jsonify({"message": "done"})
 
 
 if __name__ == "__main__":

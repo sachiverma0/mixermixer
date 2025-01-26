@@ -16,6 +16,7 @@ class RecipeModel(BaseModel):
     name: str = ""
     ingredients: List[IngredientsModel] = []
     instructions: List[str] = []
+    favorited: bool = False
 
     def to_json(self):
         return jsonable_encoder(self, exclude_none=True)

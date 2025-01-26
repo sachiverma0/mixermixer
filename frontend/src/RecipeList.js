@@ -25,7 +25,7 @@ function RecipeList() {
                 {/* Map through the data array and create a Card for each object */}
                 {data ? data.map((item, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
-                        <RecipeCard recipe={item} />
+                        <RecipeCard recipe={item} includeToggle={true} />
                     </Grid>
                 )) : (
                     <p>Loading...</p>
