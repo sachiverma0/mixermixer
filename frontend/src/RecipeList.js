@@ -22,9 +22,6 @@ function RecipeList() {
     return (
         <div>
             <Header />
-            <Typography variant="h6" sx={{ fontFamily: 'Fira Sans', marginTop: 2, fontWeight: "1000 !important", fontSize: "32px", textAlign: "center"}}>
-                    Recipes
-                </Typography>    
                     <Grid container spacing={2}>
                 {/* Map through the data array and create a Card for each object */}
                 {data ? data.map((item, index) => (
