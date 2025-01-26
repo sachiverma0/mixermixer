@@ -20,7 +20,7 @@ const Header = () => {
                         src="logo.png" // Path to your clickable image
                         alt="Logo"
                         style={{
-                            width: 'auto', // Set the size of the clickable image
+                            width: '', // Set the size of the clickable image
                             height: 'auto',
                             cursor: 'pointer',
                         }}

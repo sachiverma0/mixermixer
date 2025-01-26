@@ -48,11 +48,11 @@ function MainPage({ theme_og }) {
             },
             background: {
                 default: "#360103", // Dark red
-                paper: "#6f1712", // Medium dark red
+                paper: "#ffe3ea", // Medium dark red
             },
             text: {
-                primary: "#ba432e", // Light red
-                secondary: "#fff8ff", // Light pink
+                primary: "#360103", // Light red
+                secondary: "#360103", // Light pink
             },
         },
         typography: {
@@ -92,10 +92,10 @@ function MainPage({ theme_og }) {
                             gutterBottom
                             sx={{ fontFamily: `'Lobster', cursive` }}
                         >
-                            Mixer Mixer
+                            Need a drink?
                         </Typography>
                         <Typography variant="body1">
-                            Enter your party theme below to get a custom drink suggestion!
+                            Enter your party theme below to get a custom drink idea!
                         </Typography>
                     </Paper>
                     <Box
@@ -117,8 +117,9 @@ function MainPage({ theme_og }) {
                             onChange={(e) => setTheme(e.target.value)}
                             required
                             fullWidth
+                    
                             InputProps={{
-                                style: { fontFamily: "Roboto", color: "#e7223a" },
+                                style: { fontFamily: "Roboto", color: "#7D1128", padding: "10px !important" },
                             }}
                         />
                         <Button type="submit" variant="contained" color="primary" size="large">

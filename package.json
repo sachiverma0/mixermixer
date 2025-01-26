@@ -1,6 +1,12 @@
 {
   "dependencies": {
+<<<<<<< Updated upstream
     "@mui/icons-material": "^6.4.1",
+=======
+    "cors": "^2.8.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+>>>>>>> Stashed changes
     "react-router-dom": "^7.1.3"
   }
 }

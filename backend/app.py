@@ -20,7 +20,7 @@ client = MongoClient(MONGO_URI)
 db = client["coke"]
 recipes = db["recipes"]
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+genai.configure(api_key=os.getenv("AIzaSyDcVVO5FGcQzmSec-gWKBRjUpZ8IDjucc4"))
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 
