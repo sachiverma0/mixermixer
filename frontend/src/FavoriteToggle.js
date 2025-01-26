@@ -3,6 +3,7 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import axios from "axios";
+import { alignProperty } from "@mui/material/styles/cssUtils";
 
 function FavoriteToggle({ itemId, initialFavorite }) {
     const [favorited, setFavorited] = useState(initialFavorite);
@@ -33,6 +34,8 @@ function FavoriteToggle({ itemId, initialFavorite }) {
             color={favorited ? "error" : "default"}
             aria-label={favorited ? "Unfavorite" : "Favorite"}
             disabled={loading} // Disable button while loading
+            sx={{ display: "flex", float:"right" }}
+           
         >
             {favorited ? <FavoriteIcon /> : <FavoriteBorderIcon />}
         </IconButton>

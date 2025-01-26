@@ -13,24 +13,25 @@ function RecipeCard({ recipe, includeToggle }) {
                         width: '100%',
                     }}
                 >
-                    <Typography variant="h5" sx={{ fontFamily: 'Fira Sans', fontWeight: 'bold' }}>
+                    <Typography variant="h5" sx={{ fontFamily: 'Lato', fontWeight: 'bold', textAlign: 'center'
+                     }}>
                         {recipe.name}
                     </Typography>
                 </Box>
-                <Typography variant="h6" sx={{ fontFamily: 'Fira Sans', marginTop: 2, fontWeight:'bold' }}>
+                <Typography variant="h6" sx={{ fontFamily: 'Lato', marginTop: 2, fontWeight:'bold' }}>
                     Ingredients:
                 </Typography>
                 {recipe.ingredients.map((ingredient, index) => (
-                    <Typography variant="body2" key={index} sx={{ fontFamily: 'Fira Sans' }}>
+                    <Typography variant="body2" key={index} sx={{ fontFamily: 'Lato' }}>
                         - {ingredient.amount} {ingredient.unit} {ingredient.name}
                     </Typography>
                 ))}
 
-                <Typography variant="h6" sx={{ fontFamily: 'Fira Sans', marginTop: 2, fontWeight:'bold'}}>
+                <Typography variant="h6" sx={{ fontFamily: 'Lato', marginTop: 2, fontWeight:'bold'}}>
                     Instructions:
                 </Typography>
                 {recipe.instructions.map((instruction, index) => (
-                    <Typography variant="body2" key={index} sx={{ fontFamily: 'Fira Sans' }}>
+                    <Typography variant="body2" key={index} sx={{ fontFamily: 'Lato' }}>
                         {instruction}
                     </Typography>
                 ))}

@@ -15,13 +15,8 @@ CORS(app, origins=["http://127.0.0.1:3000", "http://localhost:3000"])
 
 load_dotenv("../.env", override=True)
 
-<<<<<<< Updated upstream
 MONGODB_URI = os.getenv("MONGODB_URI")
 client = MongoClient(MONGODB_URI, tlsAllowInvalidCertificates=True)
-=======
-MONGO_URI = os.getenv("MONGODB_URI")
-client = MongoClient(MONGO_URI)
->>>>>>> Stashed changes
 db = client["coke"]
 recipes = db["recipes"]
 

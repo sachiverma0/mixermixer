@@ -44,15 +44,6 @@ function MainPage({ theme_og }) {
                 fontFamily: "Lato",
             },
             secondary: {
-<<<<<<< Updated upstream
-                main: "#ffffff", // White
-                fontFamily: "Lato",
-            },
-            text: {
-                primary: "#ba432e", // Black
-                secondary: "#ba432e", // Light red
-                fontFamily: "Lato",
-=======
                 main: "#fff8fa", // Light pink
             },
             background: {
@@ -73,7 +64,6 @@ function MainPage({ theme_og }) {
             body1: {
                 fontSize: "1rem",
                 color: "#ba432e", // weird orange lol???
->>>>>>> Stashed changes
             },
         },
     });
