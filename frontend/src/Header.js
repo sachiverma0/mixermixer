@@ -18,7 +18,8 @@ const Header = () => {
                             alignItems: 'center',
                             display: 'flex',
                             margin: 'auto',
-                            transform: 'scale(1.5)',
+                            transform: 'scale(3)',
+                            translate: '12% ',
                         }}
                     />
                 </RouterLink>
