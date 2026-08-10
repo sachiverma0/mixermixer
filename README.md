@@ -31,10 +31,8 @@
 <br />
 <div align="center">
   <a href="https://github.com/sachiverma0/mixermixer">
-    <img src="images/logo.svg" alt="Logo" width="80" height="80">
+    <img src="images/logo.svg" alt="Logo" width="250" height="250">
   </a>
-
-<h3 align="center">Mixer Mixer</h3>
 
   <p align="center">
     Mixer Mixer is a web application designed to generate, save, and manage themed recipes using a Python Flask backend, a React frontend, and a MongoDB Atlas database. The platform integrates with Google Gemini’s API to deliver tailored recipe suggestions based on user input.
