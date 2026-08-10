@@ -37,15 +37,7 @@
   <p align="center">
     Mixer Mixer is a web application designed to generate, save, and manage themed recipes using a Python Flask backend, a React frontend, and a MongoDB Atlas database. The platform integrates with Google Gemini’s API to deliver tailored recipe suggestions based on user input.
     <br />
-    <a href="https://github.com/sachiverma0/mixermixer"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/sachiverma0/mixermixer">View Demo</a>
-    &middot;
-    <a href="https://github.com/sachiverma0/mixermixer/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    &middot;
-    <a href="https://github.com/sachiverma0/mixermixer/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-  </p>
+    <a href="https://devpost.com/software/table-61-mixer-mixer"><strong>Devpost link »</strong></a>
 </div>
 
 
@@ -83,10 +75,12 @@
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-### Inspiration
-Everyone loves parties. Me, you, your friends, parents, coworkers, and enemies because we all value human connection, being directly linked to one’s happiness. Now, what do you need in a party…? People, decorations, music, vibes, and…. A drink. Or multiple drinks! However, mixing drinks for YOUR mixer takes both time and effort and worse, what if it doesn’t fit the vibes of the party? Well, fear not, Mixer Mixer helps create tailored drinks to any gathering. You are able to create new inventive drinks with clear ingredients and recipes, and who knows? Maybe you 🫵 will create the next Coke.
+### Features
+* Homepage to enter party theme
+* Button that sends request to Gemini API and generates a drink recipe (using Coca-Cola products) based on the user's prompt
+* Button to save recipe and store to MongoDB Atlas Database
+* Catalog page listing saved drink recipes with option to select recipes as favorites
 
-Mixer Mixer is a web application designed to generate, save, and manage themed recipes using a Python Flask backend, a React frontend, and a MongoDB Atlas database. The platform integrates with Google Gemini’s API to deliver tailored recipe suggestions based on user input.
 
 ### Backend
 We used the Flask microframework to build a lightweight backend that provides endpoints for key operations.
