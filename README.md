@@ -100,6 +100,8 @@ The app runs at `http://localhost:3000`.
 - **Leeann** — Designed the user interface for all pages; built the React frontend and its HTTP communication with the backend
 - **Simran** — Frontend UI design in HTML/CSS/React; GitHub and Devpost management
 
+Github Repository forked from https://devpost.com/software/table-61-mixer-mixer
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/sachiverma0/mixermixer.svg?style=for-the-badge
