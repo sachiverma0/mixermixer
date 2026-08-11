@@ -99,10 +99,10 @@ We chose MongoDB Atlas for our database. MongoDB’s document-based model allows
 Our React frontend serves as an interface for users to input a theme to use when generating a recipe, choose to save a recipe, view previously-created recipes, and favorite recipes they like. It communicates with the backend via HTTP requests to fetch and send data dynamically. using mongodb atlas **storing recipes **json document format **flexible schema :D **hosted in the cloud **pymongo distribution *find *insert **update
 
 ### Contributions
-**Sachi:** Receiving HTTP requests from frontend using Google GenAI SDK to send prompts securely with hidden API key and return json formatted response
-**Julia:** MongoDB Database integration using the PyMongo distribution to implemented create, read, and update operations to manage our database
-**Leeann:** Designed user interface for all pages; Developed React frontend to communicate with backend via HTTP requests to fetch and send data dynamically using mongodb atlas **storing recipes **json document format **flexible schema :D **hosted in the cloud **pymongo distribution *find *insert **update
-Simran: Frontend user interface design using HTML/CSS/React; github and devpost management
+* **Sachi:** Receiving HTTP requests from frontend using Google GenAI SDK to send prompts securely with hidden API key and return json formatted response
+* **Julia:** MongoDB Database integration using the PyMongo distribution to implemented create, read, and update operations to manage our database
+* **Leeann:** Designed user interface for all pages; Developed React frontend to communicate with backend via HTTP requests to fetch and send data dynamically using mongodb atlas **storing recipes **json document format **flexible schema :D **hosted in the cloud **pymongo distribution *find *insert **update
+* **Simran:** Frontend user interface design using HTML/CSS/React; Github and Devpost management
 
 
 
