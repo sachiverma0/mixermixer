@@ -32,7 +32,7 @@
 
 A web app that turns a party theme into a custom drink recipe. Enter a theme, get a Gemini-generated recipe built around Coca-Cola products, save the ones you like, and browse them later in a catalog.
 
-Built at a hackathon by a team of four. → **[Devpost](https://devpost.com/software/table-61-mixer-mixer)**
+Built at Georgetown HoyaHacks by a team of four → **[Devpost](https://devpost.com/software/table-61-mixer-mixer)**
 
 <img src="images/mixer_homepage.png" alt="Homepage where the user enters a party theme" width="500">
 
